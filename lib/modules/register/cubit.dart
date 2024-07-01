@@ -1,17 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app/modules/register/states.dart';
-import 'package:firebase_core/firebase_core.dart';
+import '../../models/login_model.dart';
 
 class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
   SocialRegisterCubit() : super(SocialRegisterInitialState());
 
   static SocialRegisterCubit get(context) => BlocProvider.of(context);
-
-  // SocialLoginModel? loginModel;
 
   void userRegister({
     required String name,
@@ -23,9 +21,30 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
     emit(SocialRegisterLoadingState());
     FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password).then((value) {
       print(value.user?.displayName.toString());
-      emit(SocialRegisterSuccessState());
+      // emit(SocialRegisterSuccessState());
+      createUser(name: name,email: email,phone: phone,uId: value.user?.uid,isEmailVerification: value.user?.emailVerified);
     }).catchError((error){
       emit(SocialRegisterErrorState(error.toString()));
+    });
+  }
+
+
+  void createUser({
+    required String name,
+    required String email,
+    required String phone,
+    required String? uId,
+    required bool? isEmailVerification,
+  })
+  {
+    SocialLoginModel model = SocialLoginModel(
+        name,email,phone,uId,isEmailVerification
+    );
+    // emit(SocialCreateUserLoadingState());
+    FirebaseFirestore.instance.collection("users").doc(uId).set(model.toMap()).then((value){
+      emit(SocialCreateUserSuccessState());
+    }).catchError((error){
+      emit(SocialCreateUserErrorState(error));
     });
   }
 

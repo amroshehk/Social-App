@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_app/layouts/social_layout.dart';
 import 'package:social_app/modules/register/states.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
@@ -20,7 +21,7 @@ class SocialRegisterScreen extends StatelessWidget {
       create: (BuildContext context) => SocialRegisterCubit(),
       child: BlocConsumer<SocialRegisterCubit, SocialRegisterStates>(
         listener: (context, state) {
-          if (state is SocialRegisterSuccessState) {
+          if (state is SocialCreateUserSuccessState) {
             // if (state.loginModel.status!) {
             //   print(state.loginModel.message);
             //   print(state.loginModel.data?.token);
@@ -38,11 +39,16 @@ class SocialRegisterScreen extends StatelessWidget {
             // } else {
             //   print(state.loginModel.message);
             //
-            //   showToast(
-            //     message: state.loginModel.message.toString(),
-            //     state: ToastStates.ERROR,
-            //   );
+              showToast(
+                message: "create user successfully".toString(),
+                state: ToastStates.SUCCESS,
+              );
+              navigateToAndFinish(context, SocialLayout());
             // }
+          }
+
+          if(state is SocialRegisterErrorState){
+            showToast(message: state.error,state: ToastStates.ERROR);
           }
         },
         builder: (context, state) {

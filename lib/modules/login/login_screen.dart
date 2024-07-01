@@ -2,21 +2,16 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-// import 'package:social_app/layouts/shop/SocialLayout.dart';
 import 'package:social_app/modules/login/cubit.dart';
 import 'package:social_app/modules/login/states.dart';
-// import 'package:social_app/modules/register/shop_register_screen.dart';
-// import 'package:social_app/shared/components/components.dart';
-// import 'package:social_app/shared/styles/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../layouts/social_layout.dart';
 import '../../shared/components/components.dart';
+import '../../shared/components/constants.dart';
+import '../../shared/shared_preferences.dart';
 import '../../shared/styles/colors.dart';
 import '../register/register_screen.dart';
-
-// import '../../shared/components/constants.dart';
-// import '../../shared/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -136,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   "Don't have an account?",
-                                  style: TextStyle(fontSize: 14.0,color: defaultColor),
+                                  style: TextStyle(fontSize: 14.0),
                                 ),
                                 defaultTextButton(
                                     function: () {
@@ -156,19 +151,13 @@ class LoginScreen extends StatelessWidget {
           },
           listener: (context, state) {
             if(state is SocialLoginSuccessState){
-              // var status = state.loginModel?.status;
-              // if(status == true) {
-              //   CacheHelper.setData(key: USER_TOKEN, value: state.loginModel?.data?.token).then((value) {
-              //     if(value==true){
-              //       token = state.loginModel!.data!.token!;
-              //       navigateToAndFinish(context, const SocialLayout());
-              //     }
-              //   });
-
+                CacheHelper.setData(key: USER_ID, value: state.uId).then((value) {
+                  if(value==true){
+                    uId = state.uId;
+                    navigateToAndFinish(context, const SocialLayout());
+                  }
+                });
                 showToast(message: "Login successfully",state: ToastStates.SUCCESS);
-              // } else {
-              //   showToast(message: state.loginModel!.message.toString(),state: ToastStates.ERROR);
-              // }
             }
 
             if(state is SocialLoginErrorState){

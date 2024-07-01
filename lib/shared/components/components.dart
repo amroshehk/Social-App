@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../styles/colors.dart';
+
 
 Widget defaultButton({
   required String title,
@@ -34,7 +36,7 @@ Widget defaultTextButton({
   required VoidCallback function,
 }) =>
     TextButton(onPressed: function, child: Text('$title'.toUpperCase()
-    ,style: TextStyle(fontSize: 14.0, ),));
+    ,style: TextStyle(fontSize: 14.0,color: defaultColor),));
 
 
 Widget defaultTextFormField(
