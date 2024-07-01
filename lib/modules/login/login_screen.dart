@@ -164,11 +164,15 @@ class LoginScreen extends StatelessWidget {
               //       navigateToAndFinish(context, const SocialLayout());
               //     }
               //   });
-              //
-              //   showToast(message: state.loginModel!.message.toString(),state: ToastStates.SUCCESS);
+
+                showToast(message: "Login successfully",state: ToastStates.SUCCESS);
               // } else {
               //   showToast(message: state.loginModel!.message.toString(),state: ToastStates.ERROR);
               // }
+            }
+
+            if(state is SocialLoginErrorState){
+              showToast(message: state.error,state: ToastStates.ERROR);
             }
           },
         ),

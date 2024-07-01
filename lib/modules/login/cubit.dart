@@ -1,4 +1,6 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,18 +20,15 @@ class SocialLoginCubit extends Cubit<SocialLoginState>{
     required String email,
     required String password,
   }) {
-    // emit(ShopLoginLoadingState());
-    // DioHelper.postData(path: LOGIN, data: {
-    //   'email': email,
-    //   'password': password,
-    // }).then((value) {
-    //   loginModel= ShopLoginModel.fromJson(value.data);
-    //   print(loginModel?.message);
-    //   emit(ShopLoginSuccessState(loginModel));
-    // }).catchError((error) {
-    //   print(error);
-    //   emit(ShopLoginErrorState(error));
-    // });
+    emit(SocialLoginLoadingState());
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((value) {
+          emit(SocialLoginSuccessState());
+    })
+        .catchError((error) {
+      emit(SocialLoginErrorState(error.toString()));
+    });
   }
 
   IconData? passwordSuffix =  Icons.visibility_off;

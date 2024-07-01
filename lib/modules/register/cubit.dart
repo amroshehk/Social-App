@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app/modules/register/states.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
   SocialRegisterCubit() : super(SocialRegisterInitialState());
@@ -17,27 +20,13 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
     required String phone,
   })
   {
-    // emit(SocialRegisterLoadingState());
-    //
-    // DioHelper.postData(
-    //   path: REGISTER,
-    //   data:
-    //   {
-    //     'name': name,
-    //     'email': email,
-    //     'password': password,
-    //     'phone': phone,
-    //   },
-    // ).then((value)
-    // {
-    //   print(value.data);
-    //   loginModel = SocialLoginModel.fromJson(value.data);
-    //   emit(SocialRegisterSuccessState(loginModel!));
-    // }).catchError((error)
-    // {
-    //   print(error.toString());
-    //   emit(SocialRegisterErrorState(error.toString()));
-    // });
+    emit(SocialRegisterLoadingState());
+    FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password).then((value) {
+      print(value.user?.displayName.toString());
+      emit(SocialRegisterSuccessState());
+    }).catchError((error){
+      emit(SocialRegisterErrorState(error.toString()));
+    });
   }
 
   IconData suffix = Icons.visibility_outlined;
