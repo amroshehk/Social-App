@@ -1,43 +1,57 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_app/layouts/cubit/cubit.dart';
+import 'package:social_app/layouts/cubit/states.dart';
 import 'package:social_app/modules/login/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:social_app/shared/components/constants.dart';
+import 'package:social_app/shared/cubit_observer.dart';
+import 'package:social_app/shared/shared_preferences.dart';
+import 'package:social_app/shared/styles/themes.dart';
 import 'firebase_options.dart';
+import 'layouts/social_layout.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  await CacheHelper.init();
+  Bloc.observer = AppBlocObserver();
+  Widget startWidget;
+  uId = CacheHelper.getData(key: USER_ID);
+  if (uId == null) {
+    startWidget = LoginScreen();
+  } else {
+    startWidget = SocialLayout();
+  }
+  runApp(MyApp(startWidget));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  late Widget widget;
+
+  MyApp(this.widget, {super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: LoginScreen(),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+              create: (BuildContext context) => SocialCubit()..getUserData())
+        ],
+        child: BlocConsumer<SocialCubit, SocialState>(
+          builder: (BuildContext context, SocialState state) {
+            return MaterialApp(
+              title: 'Flutter Demo',
+              theme: lightTheme(),
+              darkTheme: darkTheme(),
+              home: widget,
+            );
+          },
+          listener: (context, state) {},
+        ));
   }
 }
