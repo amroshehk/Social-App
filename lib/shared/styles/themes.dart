@@ -15,7 +15,10 @@ ThemeData lightTheme() => ThemeData(
           statusBarColor: Colors.white,
           statusBarIconBrightness: Brightness.dark),
       titleTextStyle: TextStyle(
-          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 20.0,
+          fontFamily: 'Jannah'),
       iconTheme: IconThemeData(color: defaultColor),
     ),
     scaffoldBackgroundColor: Colors.white,
@@ -33,7 +36,7 @@ ThemeData lightTheme() => ThemeData(
     fontFamily: 'Jannah');
 
 ThemeData darkTheme() => ThemeData(
-  primaryColor: defaultDarkColor,
+    primaryColor: defaultDarkColor,
     appBarTheme: AppBarTheme(
       elevation: 0.0,
       titleSpacing: 20.0,

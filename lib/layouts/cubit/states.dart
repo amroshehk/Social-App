@@ -14,3 +14,8 @@ class SocialErrorState extends SocialState {
   final String error;
   SocialErrorState(this.error);
 }
+
+
+class SocialChangeBottomNavState extends SocialState {
+
+}
