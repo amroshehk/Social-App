@@ -32,7 +32,13 @@ ThemeData lightTheme() => ThemeData(
     useMaterial3: true,
     textTheme: const TextTheme(
         bodyMedium: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.w700, fontSize: 18.0)),
+            color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16.0),
+        titleSmall: TextStyle(
+          fontSize: 14.0,
+          fontWeight: FontWeight.w600,
+          color: Colors.black,
+          height: 1.3,
+        )),
     fontFamily: 'Jannah');
 
 ThemeData darkTheme() => ThemeData(
@@ -49,22 +55,29 @@ ThemeData darkTheme() => ThemeData(
           fontWeight: FontWeight.bold,
           fontSize: 20.0,
           fontFamily: 'Jannah'),
-      iconTheme: IconThemeData(color: defaultDarkColor),
+      iconTheme: IconThemeData(color: Colors.white),
     ),
-    scaffoldBackgroundColor: defaultColor,
+    scaffoldBackgroundColor: defaultDarkColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         elevation: 70,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: defaultDarkColor,
+        selectedItemColor: Colors.white,
         backgroundColor: HexColor("31363F"),
         unselectedItemColor: HexColor("6B728E")),
-    iconTheme: IconThemeData(color: defaultDarkColor),
+    iconTheme: IconThemeData(color: Colors.white),
     colorScheme: ColorScheme.fromSeed(seedColor: defaultDarkColor),
     useMaterial3: true,
     textTheme: const TextTheme(
         bodyMedium: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w700,
-            fontSize: 18.0,
-            fontFamily: 'Jannah')),
+            fontSize: 16.0,
+            height: 1.5,
+            fontFamily: 'Jannah'),
+        titleSmall: TextStyle(
+          fontSize: 14.0,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+          height: 1.3,
+        )),
     fontFamily: 'Jannah');
