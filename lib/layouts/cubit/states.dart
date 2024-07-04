@@ -19,3 +19,7 @@ class SocialErrorState extends SocialState {
 class SocialChangeBottomNavState extends SocialState {
 
 }
+
+class SocialAddNewPostState extends SocialState {
+
+}

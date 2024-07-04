@@ -16,6 +16,7 @@ import 'package:social_app/modules/login/states.dart';
 import 'package:social_app/modules/settings/settings_screen.dart';
 import 'package:social_app/modules/users/users_screen.dart';
 
+import '../../modules/new_post/new_post_screen.dart';
 import '../../shared/components/constants.dart';
 
 // import '../../shared/network/remote/dio_helper.dart';
@@ -39,16 +40,23 @@ class SocialCubit extends Cubit<SocialState> {
   List<Widget> screens = [
     HomeScreen(),
     ChatsScreen(),
+    NewPostsScreen(),
     UsersScreen(),
     SettingsScreen()
   ];
 
-  List<String> titles = ['Home', 'Chats', 'Users', 'Settings'];
+  List<String> titles = ['Home', 'Chats', 'Post', 'Users', 'Settings'];
 
   var currentIndex = 0;
 
   void changeBottomNav(index) {
-    currentIndex = index;
-    emit(SocialChangeBottomNavState());
+
+    if(index == 2) {
+      emit(SocialAddNewPostState());
+    } else {
+      currentIndex = index;
+      emit(SocialChangeBottomNavState());
+    }
+
   }
 }
