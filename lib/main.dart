@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (BuildContext context) => SocialCubit()..getUserData())
         ],
-        child: BlocConsumer<SocialCubit, SocialState>(
-          builder: (BuildContext context, SocialState state) {
+        child: BlocConsumer<SocialCubit, SocialStates>(
+          builder: (BuildContext context, SocialStates state) {
             return MaterialApp(
               title: 'Flutter Demo',
               theme: lightTheme(),

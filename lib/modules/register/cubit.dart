@@ -38,7 +38,10 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
   })
   {
     SocialLoginModel model = SocialLoginModel(
-        name,email,phone,uId,isEmailVerification
+        name,email,phone,uId,"Write your bio...",
+        "https://www.freepik.com/free-ai-image/3d-illustration-young-business-man-with-funny-expression-his-face_126609697.htm#fromView=search&page=1&position=3&uuid=65ba1883-741f-4900-86d5-bbbb3e5e6467",
+        "https://img.freepik.com/free-photo/autumn-leaves-composition_23-2151554997.jpg?t=st=1720136046~exp=1720139646~hmac=74a1a4f3a373c6f5c54e44140470c051ef49658d1f3abda7df18e9b536af9ec3&w=1480"
+        ,isEmailVerification
     );
     // emit(SocialCreateUserLoadingState());
     FirebaseFirestore.instance.collection("users").doc(uId).set(model.toMap()).then((value){

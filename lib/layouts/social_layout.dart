@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app/layouts/cubit/cubit.dart';
 import 'package:social_app/layouts/cubit/states.dart';
 import 'package:social_app/shared/components/components.dart';
-
 import '../modules/new_post/new_post_screen.dart';
 import '../shared/styles/icon_broken.dart';
 
@@ -15,7 +14,7 @@ class SocialLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = SocialCubit.get(context);
-    return BlocConsumer<SocialCubit,SocialState>(builder: (context, state) {
+    return BlocConsumer<SocialCubit,SocialStates>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
           title: Text(cubit.titles[cubit.currentIndex]),
@@ -29,9 +28,9 @@ class SocialLayout extends StatelessWidget {
           ],
         ),
         body:ConditionalBuilder(
-      condition: SocialCubit.get(context).model != null,
+      condition: SocialCubit.get(context).userModel != null,
           builder: (context) {
-            var model = SocialCubit.get(context).model!;
+            var model = SocialCubit.get(context).userModel!;
             return cubit.screens[cubit.currentIndex];
         // return Column(
         //   children: [

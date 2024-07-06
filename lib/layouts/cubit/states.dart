@@ -1,25 +1,25 @@
 
-abstract class SocialState {}
+abstract class SocialStates {}
 
-class SocialInitialState extends SocialState {}
+class SocialInitialState extends SocialStates {}
 
-class SocialLoadingState extends SocialState {}
+class SocialLoadingState extends SocialStates {}
 
-class SocialSuccessState extends SocialState {
+class SocialSuccessState extends SocialStates {
   final String uId;
   SocialSuccessState(this.uId);
 }
 
-class SocialErrorState extends SocialState {
+class SocialErrorState extends SocialStates {
   final String error;
   SocialErrorState(this.error);
 }
 
 
-class SocialChangeBottomNavState extends SocialState {
+class SocialChangeBottomNavState extends SocialStates {
 
 }
 
-class SocialAddNewPostState extends SocialState {
+class SocialAddNewPostState extends SocialStates {
 
 }
