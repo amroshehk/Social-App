@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
         child: BlocConsumer<SocialCubit, SocialStates>(
           builder: (BuildContext context, SocialStates state) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               theme: lightTheme(),
               darkTheme: darkTheme(),

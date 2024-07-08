@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../layouts/cubit/cubit.dart';
 import '../../layouts/cubit/states.dart';
+import '../../shared/components/components.dart';
 import '../../shared/styles/icon_broken.dart';
+import '../edit_post/edit_profile_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -166,7 +168,9 @@ class SettingsScreen extends StatelessWidget {
                     width: 10.0,
                   ),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      navigateTo(context, EditProfileScreen());
+                    },
                     child: Icon(
                       IconBroken.Edit,
                       size: 16.0,
