@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../styles/colors.dart';
+import '../styles/icon_broken.dart';
 
 
 Widget defaultButton({
@@ -91,6 +92,22 @@ Widget myDivider() => Padding(
     color: Colors.grey[300],
   ),
 );
+
+PreferredSizeWidget defaultAppBar(
+        {required BuildContext context,
+        String? title,
+        List<Widget>? actions}) =>
+    AppBar(
+      leading: IconButton(
+        icon: Icon(IconBroken.Arrow___Left_2),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+      titleSpacing: 5.0,
+      title: Text(title ?? ""),
+      actions: actions,
+    );
 
 void showToast({required String message, required ToastStates state}) {
   Fluttertoast.showToast(
