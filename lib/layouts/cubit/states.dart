@@ -83,3 +83,14 @@ class SocialCommentOnPostErrorState extends SocialStates
 
   SocialCommentOnPostErrorState(this.error);
 }
+
+class SocialGetAllUsersLoadingState extends SocialStates {}
+
+class SocialGetAllUsersSuccessState extends SocialStates {}
+
+class SocialGetAllUsersErrorState extends SocialStates
+{
+  final String error;
+
+  SocialGetAllUsersErrorState(this.error);
+}

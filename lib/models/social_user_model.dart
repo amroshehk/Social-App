@@ -18,7 +18,7 @@ class SocialUserModel {
       this.cover,
       this.isEmailVerified});
 
-  SocialUserModel.formJson(Map<String, dynamic> json) {
+  SocialUserModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     email = json['email'];
     phone = json['phone'];
