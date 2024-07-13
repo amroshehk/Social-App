@@ -13,8 +13,8 @@ class NewPostsScreen extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SocialCubit, SocialStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
+      listener: (BuildContext context, SocialStates state) {},
+      builder: (BuildContext context, SocialStates state) {
         var userModel = SocialCubit.get(context).userModel;
         return Scaffold(
           appBar: defaultAppBar(

@@ -39,7 +39,7 @@ class SocialRegisterCubit extends Cubit<SocialRegisterStates> {
   {
     SocialUserModel model = SocialUserModel(
         name: name,email: email,phone: phone,uId: uId,bio: "Write your bio...",
-        image: "https://www.freepik.com/free-ai-image/3d-illustration-young-business-man-with-funny-expression-his-face_126609697.htm#fromView=search&page=1&position=3&uuid=65ba1883-741f-4900-86d5-bbbb3e5e6467",
+        image: "https://img.freepik.com/free-photo/3d-illustration-young-business-man-with-funny-expression-his-face_1142-55156.jpg?t=st=1720745457~exp=1720749057~hmac=c771e4c207b1ed73ea54fb7f90586f67ff7a80f858ad425e317df225bd451b84&w=1060",
         cover: "https://img.freepik.com/free-photo/autumn-leaves-composition_23-2151554997.jpg?t=st=1720136046~exp=1720139646~hmac=74a1a4f3a373c6f5c54e44140470c051ef49658d1f3abda7df18e9b536af9ec3&w=1480"
         ,isEmailVerified: isEmailVerified
     );
