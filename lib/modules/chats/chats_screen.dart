@@ -6,6 +6,7 @@ import '../../layouts/cubit/cubit.dart';
 import '../../layouts/cubit/states.dart';
 import '../../models/social_user_model.dart';
 import '../../shared/components/components.dart';
+import '../chat_details/chat_details_screen.dart';
 
 class ChatsScreen extends StatelessWidget {
   const ChatsScreen({super.key});
@@ -20,7 +21,7 @@ class ChatsScreen extends StatelessWidget {
           condition: SocialCubit.get(context).users.length > 0,
           builder: (context) => ListView.separated(
             physics: BouncingScrollPhysics(),
-            itemBuilder: (context, index) => buildChatItem(SocialCubit.get(context).users[index]),
+            itemBuilder: (context, index) => buildChatItem(SocialCubit.get(context).users[index],context),
             separatorBuilder: (context, index) => myDivider(),
             itemCount: SocialCubit.get(context).users.length,
           ),
@@ -30,8 +31,15 @@ class ChatsScreen extends StatelessWidget {
     );
   }
 
-  Widget buildChatItem(SocialUserModel model) => InkWell(
-    onTap: (){},
+  Widget buildChatItem(SocialUserModel model,context) => InkWell(
+    onTap: (){
+      navigateTo(
+        context,
+        ChatDetailsScreen(
+          userModel: model,
+        ),
+      );
+    },
     child: Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(

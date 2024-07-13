@@ -72,7 +72,7 @@ Widget defaultTextFormField(
         onFieldSubmitted:onFieldSubmitted
     );
 
-void navigateTo(context, Widget screen) =>
+void navigateTo(BuildContext context, Widget screen) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
 
 void navigateToAndFinish(context, Widget screen) =>
