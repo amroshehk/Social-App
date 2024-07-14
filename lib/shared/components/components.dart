@@ -109,7 +109,7 @@ PreferredSizeWidget defaultAppBar(
       actions: actions,
     );
 
-void showToast({required String message, required ToastStates state}) {
+Future<void> showToast({required String message, required ToastStates state}) async {
   Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
