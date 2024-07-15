@@ -42,6 +42,7 @@ Future<void> main() async {
 
   var token = await FirebaseMessaging.instance.getToken();
 
+  FirebaseMessaging.instance.subscribeToTopic("all");
   print(token);
   // foreground fcm
   FirebaseMessaging.onMessage.listen((event)
